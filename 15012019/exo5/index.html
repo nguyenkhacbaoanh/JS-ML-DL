@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>D3js; parse csv to json</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+        // le requête d'asynchrone: faire la requete de tout les object et affiche au fur à masure à DOM (XRL)
+        // ajax dans library Jquery est la méthode de faire simplifier le requête d'asynchrone
+        // ES6: fetch API nous permet de récupérer les données
+        // Utilisation des Promise JS
+        Promise.all([
+            d3.csv("./data/cities.csv"),
+            d3.csv("./data/cities.index.csv")
+        ])
+        .then( rawData => {
+            // console.log(rawData);
+            // Combiner les deux tableaux
+            for (let city of rawData[0]) {
+                let cityState = city.state;
+                // Convertir type data
+                city.population = +city.population;
+                city['land area'] = +city['land area'];
+                // Boucle sur l'index
+                for (let cityIndex of rawData[1]) {
+                    // Comparer cityState avec cityIndex.index
+                    if (cityState === cityIndex.index) {
+                        // console.log(city);
+                        // console.log(cityIndex);
+                        
+                        // Combiner les données
+                        city.state = cityIndex.state;
+                    };
+                };
+            };
+
+            // Renvoyer les données
+            return rawData[0];
+        })
+        .then(
+            combinatedData => {
+                cityCollection = combinatedData;
+                console.log(cityCollection);
+            }
+        )
+        .catch( err => {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

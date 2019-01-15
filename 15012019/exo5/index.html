@@ -31,7 +31,7 @@
                     if (cityState === cityIndex.index) {
                         // console.log(city);
                         // console.log(cityIndex);
-                        
+
                         // Combiner les données
                         city.state = cityIndex.state;
                     };
@@ -45,6 +45,22 @@
             combinatedData => {
                 cityCollection = combinatedData;
                 console.log(cityCollection);
+
+                // Affichier dans la console la ville la plus petite
+                const minCity = d3.min(cityCollection, (city) => {
+                    return city['land area'];
+                });
+                // Affichier dans la console la ville la plus petite et la plus grande
+                const minMaxCity = d3.extent( cityCollection, (city) => {
+                    return city['land area'];
+                });
+                // Affichier dans la console la ville la plus peuplée
+                const maxPeople = d3.max( cityCollection, (city) => {
+                    return city.population;
+                });
+                console.log(minCity);
+                console.log(maxPeople);
+                console.log(minMaxCity);
             }
         )
         .catch( err => {

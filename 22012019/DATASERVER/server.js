@@ -44,12 +44,12 @@ Configuration
             server.use( bodyParser.urlencoded( {extended: true}));
 
             //=> Routers
-            // routers pour le front
-            const frontRouter = new FrontRouterClass;
-            server.use('/', frontRouter.init());
             // router pour le D3
             const d3Router = new D3RouterClass;
             server.use('/api/d3', d3Router.init());
+            // routers pour le front
+            const frontRouter = new FrontRouterClass;
+            server.use('/', frontRouter.init());
             //=> Start server
             this.launch();
         }

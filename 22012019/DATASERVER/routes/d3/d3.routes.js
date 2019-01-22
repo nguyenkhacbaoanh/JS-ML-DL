@@ -18,19 +18,18 @@ import module
                 let jsonData = d3.csvParse(req.body.input)
 
                 //=> Regex pour verifier la valeur numérique
-                const regexNumeric = "/(\d+(\.\d+" ;
+                const regexNumeric = /(\d+(\.\d+)?)/;
+
+                const regexDate = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
 
                 //=> Faire une boucle sur la collection de données
                 for (let i = 0; i< jsonData.length; i++){
-                    console.log(jsonData[i])
                     //=> Boucle sur un object
                     let item = jsonData[i]
                     for ( let prop in item){
-                        console.log(prop);
-                        console.log(item[prop]);
                         //=> Verifier les valeurs numériques
                         if (regexNumeric.test(item[prop]) && !regexDate.test(item[prop])){
-                            console.log(+item[prop])
+                            item[prop] = +item[prop]
                         }
                         else if (regexDate.test(item[prop])){
                             item[prop] = new Date(item[prop])

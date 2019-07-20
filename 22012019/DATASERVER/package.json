@@ -1,16 +1,10 @@
 {
-  "name": "DATASERVER",
+  "name": "dataserver",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "---",
+  "main": "nodemon server.js",
   "dependencies": {
+    "@tensorflow/tfjs-node": "^0.2.3",
     "body-parser": "^1.18.3",
     "d3": "^5.7.0",
     "dotenv": "^6.2.0",
@@ -18,5 +12,12 @@
     "express": "^4.16.4",
     "nodemon": "^1.18.9",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
 }
